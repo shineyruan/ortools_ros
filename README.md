@@ -54,3 +54,7 @@ and you're done!
 ## Note
 
 This project by default only builds the C++ target with default CMake options and all necessary dependencies. Users could pass more build options (i.e., more solvers) to the project by using `colcon build --cmake-args -DBUILD_DEPS=ON`.
+
+## Acknowledgements
+
+- CI set up is borrowed from [autoware.universe](https://github.com/autowarefoundation/autoware.universe) and [autoware-github-actions](https://github.com/autowarefoundation/autoware-github-actions).
