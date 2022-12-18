@@ -1,6 +1,6 @@
 # ortools_ros
 
-ROS package mirror of Google OR-Tools
+ROS 2 package mirror of Google OR-Tools
 
 ## Usage
 
