@@ -26,7 +26,7 @@ option(BUILD_HIGHS "" ON)
 option(BUILD_SCIP "" ON)
 option(BUILD_SAMPLES "" OFF)
 option(BUILD_EXAMPLES "" OFF)
-add_subdirectory(or-tools)
+add_subdirectory(ortools)
 
 # export lib
 ament_export_libraries(ortools)

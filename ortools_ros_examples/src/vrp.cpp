@@ -1,3 +1,10 @@
+/**
+ * @file vrp.cpp
+ *
+ * @brief Source code copied directly from
+ * https://developers.google.com/optimization/routing/vrp#entire_program1
+ */
+
 #include <algorithm>
 #include <cstdint>
 #include <sstream>
