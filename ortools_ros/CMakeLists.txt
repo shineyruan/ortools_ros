@@ -3,12 +3,9 @@ project(ortools_ros)
 
 # Set compile options
 if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 20)
+  set(CMAKE_CXX_STANDARD 17)
   set(CMAKE_CXX_STANDARD_REQUIRED ON)
   set(CMAKE_CXX_EXTENSIONS OFF)
-endif()
-if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-  add_compile_options(-Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-unused-variable)
 endif()
 
 # find dependencies
@@ -29,10 +26,11 @@ option(BUILD_HIGHS "" ON)
 option(BUILD_SCIP "" ON)
 option(BUILD_SAMPLES "" OFF)
 option(BUILD_EXAMPLES "" OFF)
-add_subdirectory(or-tools)
+add_subdirectory(ortools)
 
 # export lib
 ament_export_libraries(ortools)
+ament_export_include_directories(${CMAKE_INSTALL_INCLUDEDIR})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
