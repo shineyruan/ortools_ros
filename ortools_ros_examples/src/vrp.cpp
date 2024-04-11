@@ -5,6 +5,9 @@
  * https://developers.google.com/optimization/routing/vrp#entire_program1
  */
 
+#define FMT_HEADER_ONLY
+#include <fmt/format.h>
+
 #include <algorithm>
 #include <cstdint>
 #include <sstream>
@@ -67,7 +70,7 @@ void PrintSolution(const DataModel &data, const RoutingIndexManager &manager,
   int64_t max_route_distance{0};
   for (int vehicle_id = 0; vehicle_id < data.num_vehicles; ++vehicle_id) {
     int64_t index = routing.Start(vehicle_id);
-    LOG(INFO) << "Route for Vehicle " << vehicle_id << ":";
+    LOG(INFO) << fmt::format("Route for Vehicle {}:", vehicle_id);
     int64_t route_distance{0};
     std::stringstream route;
     while (routing.IsEnd(index) == false) {
@@ -78,12 +81,14 @@ void PrintSolution(const DataModel &data, const RoutingIndexManager &manager,
                                                      int64_t{vehicle_id});
     }
     LOG(INFO) << route.str() << manager.IndexToNode(index).value();
-    LOG(INFO) << "Distance of the route: " << route_distance << "m";
+    LOG(INFO) << fmt::format("Distance of the route: {}m", route_distance);
     max_route_distance = std::max(route_distance, max_route_distance);
   }
-  LOG(INFO) << "Maximum of the route distances: " << max_route_distance << "m";
+  LOG(INFO) << fmt::format("Maximum of the route distances: {}m",
+                           max_route_distance);
   LOG(INFO) << "";
-  LOG(INFO) << "Problem solved in " << routing.solver()->wall_time() << "ms";
+  LOG(INFO) << fmt::format("Problem solved in {}ms",
+                           routing.solver()->wall_time());
 }
 
 void VrpGlobalSpan() {
