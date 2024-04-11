@@ -3,9 +3,6 @@ name: build-differential
 on:
   pull_request:
 
-permissions:
-  actions: write
-
 jobs:
   build-differential:
     runs-on: ubuntu-latest
@@ -39,3 +36,5 @@ jobs:
           rosdistro: ${{ matrix.rosdistro }}
           target-packages: ${{ steps.get-modified-packages.outputs.modified-packages }}
           build-depends-repos: ${{ matrix.build-depends-repos }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_ACTIONS_TOKEN }}
