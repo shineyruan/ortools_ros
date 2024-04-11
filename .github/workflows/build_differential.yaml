@@ -3,9 +3,6 @@ name: build-differential
 on:
   pull_request:
 
-env:
-  GH_PAT: ${{ secrets.GH_PAT }}
-
 jobs:
   build-differential:
     runs-on: ubuntu-latest
@@ -39,3 +36,4 @@ jobs:
           rosdistro: ${{ matrix.rosdistro }}
           target-packages: ${{ steps.get-modified-packages.outputs.modified-packages }}
           build-depends-repos: ${{ matrix.build-depends-repos }}
+          token: ${{ secrets.GH_PAT }}

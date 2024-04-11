@@ -4,9 +4,6 @@ on:
   push:
   workflow_dispatch:
 
-env:
-  GH_PAT: ${{ secrets.GH_PAT }}
-
 jobs:
   build:
     if: ${{ github.event_name != 'push' || github.ref_name == github.event.repository.default_branch }}
@@ -40,3 +37,4 @@ jobs:
           rosdistro: ${{ matrix.rosdistro }}
           target-packages: ${{ steps.get-self-packages.outputs.self-packages }}
           build-depends-repos: ${{ matrix.build-depends-repos }}
+          token: ${{ secrets.GH_PAT }}
