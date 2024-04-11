@@ -3,6 +3,9 @@ name: build-differential
 on:
   pull_request:
 
+permissions:
+  actions: write
+
 jobs:
   build-differential:
     runs-on: ubuntu-latest
