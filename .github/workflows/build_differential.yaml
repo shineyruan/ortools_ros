@@ -4,13 +4,7 @@ on:
   pull_request:
 
 jobs:
-  check-secret:
-    uses: autowarefoundation/autoware-github-actions/.github/workflows/check-secret.yaml@v1
-    secrets:
-      secret: ${{ secrets.APP_ID }}
-
   build-differential:
-    needs: check-secret
     runs-on: ubuntu-latest
     container: ${{ matrix.container }}
     strategy:
@@ -22,13 +16,6 @@ jobs:
           - rosdistro: humble
             container: ghcr.io/autowarefoundation/autoware-universe:humble-latest
     steps:
-      - name: Generate token
-        id: generate-token
-        uses: tibdex/github-app-token@v1
-        with:
-          app_id: ${{ secrets.APP_ID }}
-          private_key: ${{ secrets.PRIVATE_KEY }}
-
       - name: Check out repository
         uses: actions/checkout@v3
         with:
@@ -48,5 +35,3 @@ jobs:
         with:
           rosdistro: ${{ matrix.rosdistro }}
           target-packages: ${{ steps.get-modified-packages.outputs.modified-packages }}
-          build-depends-repos: ${{ matrix.build-depends-repos }}
-          token: ${{ steps.generate-token.outputs.token }}
