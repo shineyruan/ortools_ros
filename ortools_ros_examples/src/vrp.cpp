@@ -65,8 +65,8 @@ struct DataModel {
 //! @param[in] manager Index manager used.
 //! @param[in] routing Routing solver used.
 //! @param[in] solution Solution found by the solver.
-void PrintSolution(const DataModel &data, const RoutingIndexManager &manager,
-                   const RoutingModel &routing, const Assignment &solution) {
+void PrintSolution(const DataModel& data, const RoutingIndexManager& manager,
+                   const RoutingModel& routing, const Assignment& solution) {
   int64_t max_route_distance{0};
   for (int vehicle_id = 0; vehicle_id < data.num_vehicles; ++vehicle_id) {
     int64_t index = routing.Start(vehicle_id);
@@ -126,7 +126,7 @@ void VrpGlobalSpan() {
       FirstSolutionStrategy::PATH_CHEAPEST_ARC);
 
   // Solve the problem.
-  const Assignment *solution = routing.SolveWithParameters(searchParameters);
+  const Assignment* solution = routing.SolveWithParameters(searchParameters);
 
   // Print solution on console.
   if (solution != nullptr) {
@@ -137,7 +137,7 @@ void VrpGlobalSpan() {
 }
 }  // namespace operations_research
 
-int main(int /*argc*/, char * /*argv*/[]) {
+int main(int /*argc*/, char* /*argv*/[]) {
   operations_research::VrpGlobalSpan();
   return EXIT_SUCCESS;
 }
